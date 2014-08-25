@@ -1,0 +1,19 @@
+body {
+  background-color: white;
+  color: black;
+  font-family: verdana, sans-serif;
+}
+a {
+  color: #496dc8;
+  transition-property: none;
+}
+a:hover {
+  color: #d0bdff;
+}
+.slide {
+  transition: none;
+  transform: none;
+}
+.slide-active {
+  transform: none;
+}

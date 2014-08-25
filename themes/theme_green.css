@@ -1,0 +1,26 @@
+body {
+  background-color: white;
+  background: url("green.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+  color: black;
+}
+.slide-basic h1 {
+  font-variant: small-caps;
+}
+a {
+  color: #2c592a;
+  transition-property: none;
+}
+a:hover {
+  color: #60da5a;
+}
+.slide {
+  transition: 0.5s all;
+  transform: translateX(20%);
+}
+.slide-active {
+  transform: none;
+}

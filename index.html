@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PresentationApp</title>
+    
+    <link rel="stylesheet" type="text/css" href="style/style.css">
+    <link id="presentation-theme" rel="stylesheet" type="text/css" href="themes/theme_default.css">
+    <link id="presentation-slide-style" rel="stylesheet" type="text/css" href="">
+
+    <script src="scripts/js/libraries/jquery-1.11.0.min.js"></script>
+    <script>
+        /* For some reason jQuery Mobile creates an ugly "loading" text at the bottom of the page.
+         * This code is used to prevent that. */
+        jQuery(document).on("mobileinit", function() {
+            jQuery.mobile.autoInitializePage = false;
+        });
+    </script>
+    <script src="scripts/js/libraries/jquery.mobile-1.3.2.min.js"></script>
+    <script src="scripts/js/libraries/pubsub.js"></script>
+
+    <script>
+        // Define global variable presentation name:
+        var presentationName = "example_presentation";
+    </script>
+
+    <script src="scripts/js/PresentationController.js"></script>
+    <script src="scripts/js/InputController.js"></script>
+    <script src="scripts/js/app.js"></script>
+</head>
+<body>
+    <div class="slides"></div>
+
+    <div class="controls-area">
+        <div class="controls">
+            <div class="control arrow-left"></div>
+            <div class="control arrow-right"></div>
+        </div>
+    </div>
+</body>
+</html>

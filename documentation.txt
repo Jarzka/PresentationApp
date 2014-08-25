@@ -1,0 +1,77 @@
+===============================================================
+PresentationApp
+===============================================================
+
+Version: 1.0
+
+This is a short documentation of PresentationApp.
+
+Simply put, PresentationApp is an HTML5 app that can be used to create PowerPoint like presentations
+that can be viewed with HTML5 compliant web browser. Basic HTML / CSS skills are required to create
+presentations with this app.
+
+===============================================================
+How to create a basic presentation
+===============================================================
+
+All presentations are located in presentations folder. Individual presentations are stored
+in sub-folders. You can start creating your own presentation by making a copy of example_presentation
+and naming it, for example, my_presentation.
+
+Presentation folder contains the following folders:
+
+/media
+
+    This folder contains all images and videos used in the presentation.
+
+/scripts/js
+
+    This folder contains SlideController.js. This file can be used to add additional
+    functionality to your presentation slides. The program slides with SlideController,
+    you will need basic JavaScript / jQuery skills.
+
+    If you do not need JavaScript functionality in your presentation, you can simply
+    leave SlideController.js as it is or clean the initializeController function's content like this:
+    this.initializeController = function() {}
+    Therefore SlideController does not do anything.
+
+/style
+
+    This folder contains slides.css file that you can use to modify your slides style with CSS.
+
+    If you wonder what is the difference between presentation theme and slide style,
+    here is an explanation: Presentation theme defines the general theme that is used
+    in all slides, like text colors, background image, fade etc. With slides.css you can modify
+    the style of individual slides like changing text colors and moving items in different locations.
+
+slides.html
+
+    This file contains your presentation's slides in HTML format. Examine the example slides
+    to understand the slide structure.
+
+presentation.js
+
+    This file contains basic information about your presentation.
+    Currently the only thing in this file is the theme name.
+    If you want use some other theme instead of the default theme,
+    edit the file like this:
+    var theme = "theme_love.css";
+
+Once your presentation is ready, open index.html and find the following line:
+var presentationName = "example_presentation";
+Change presentationName to match your presentation's folder name. For example:
+var presentationName = "my_presentation";
+
+To run your presentation, open index.html with your HTML5 compliant web browser.
+
+===============================================================
+Custom theme
+===============================================================
+
+You need basic CSS skills if you want to create a custom theme for your presentation.
+
+All themes are located in the themes folder. This folder contains CSS themes files that can
+be used in presentations. If you want to make a custom theme for your presentation,
+make a copy of theme_basic.css and modify it. After you are done, go to your presentation's
+folder, open presentation.js and change the presentation theme name to match your custom theme file.
+
