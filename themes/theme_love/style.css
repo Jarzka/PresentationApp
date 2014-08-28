@@ -15,6 +15,9 @@ a {
 a:hover {
   color: #ff7b7b;
 }
+.chart-area {
+  background-image: url("chart_pattern_love.png");
+}
 .slide {
   transition: 0.5s opacity;
 }

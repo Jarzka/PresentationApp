@@ -124,6 +124,11 @@ table tr {
   font-size: 2em;
   text-align: center;
 }
+.chart-area {
+  border: 1px solid white;
+  min-width: 300px;
+  min-height: 200px;
+}
 .slide {
   transition: 0.5s all;
   transform: rotateY(45deg) translateX(5%);
