@@ -4,7 +4,7 @@ function ChartController() {
 
     // Private
 
-    function constructChart() {
+    function convertBarChartsToStandardHTML() {
         // Convert bar chart to standard HTML / CSS
         $("pa-barchart").each(function() {
             $(this).replaceWith("<div class='chart bar-chart'>" + this.innerHTML + "</div>");
@@ -13,16 +13,22 @@ function ChartController() {
         // Convert bars to standard HTML / CSS
 
         $("pa-bar").each(function() {
-            var barChartStandard = $("<div class='chart-bar'></div>");
-            barChartStandard.attr("value", $(this).attr("value"));
-            barChartStandard.attr("name", $(this).attr("name"));
-            barChartStandard.attr("color", $(this).attr("color"));
-            $(this).replaceWith(barChartStandard);
+            var barStandard = $("<div class='bar'></div>");
+            barStandard.attr("value", $(this).attr("value"));
+            barStandard.attr("name", $(this).attr("name"));
+            barStandard.attr("color", $(this).attr("color"));
+            $(this).replaceWith(barStandard);
         });
+
+        // Create chart content area and move bars there
+
+        var chartContent = $("<div class='chart-content'></div>");
+        $(".bar-chart").append(chartContent);
+        $(".bar-chart .bar").detach().appendTo(".bar-chart .chart-content");
     }
 
-    function positionCharts() {
-        bars = $(".chart-bar");
+    function positionBarChart() {
+        bars = $(".bar-chart .bar");
 
         function positionChartsX() {
             // Position bars on the x-axis.
@@ -59,35 +65,47 @@ function ChartController() {
         }
 
         function setBarAreaSize() {
-            $(".chart-area").css("width", bars.length * 100)
-        }
-
-        function addLabels() {
-            bars.each(function(index) {
-                var label = $("<p>" + $(this).attr("name") + "</p>");
-                $(".chart-area").append(label);
-            });
+            $(".bar-chart").css("width", bars.length * 100 + 100);
         }
 
         if (bars.length > 0) {
             positionChartsX();
             setBarHeights();
             setBarAreaSize();
-            addLabels();
         }
     }
 
-    function colorCharts() {
-        $(".chart-bar").each(function() {
+    function colorBarChartBars() {
+        $(".bar").each(function() {
             $(this).css("background-color", $(this).attr("color"));
         });
+    }
+
+    function addLabels() {
+        bars.each(function(index) {
+            var label = $("<p class='label'>" + $(this).attr("name") + "</p>");
+            $(this).append(label);
+        });
+    }
+
+    function addBarNumbers() {
+        bars.each(function(index) {
+            var label = $("<p class='value'>" + $(this).attr("value") + "</p>");
+            $(this).append(label);
+        });
+    }
+
+    function constructBarCharts() {
+        convertBarChartsToStandardHTML();
+        positionBarChart();
+        colorBarChartBars();
+        addLabels();
+        addBarNumbers();
     }
 
     // Public
 
     this.initializeController = function() {
-        constructChart();
-        positionCharts();
-        colorCharts();
+        constructBarCharts();
     }
 }

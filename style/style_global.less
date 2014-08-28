@@ -212,17 +212,36 @@ table
 
 .chart {
     border: 1px solid white;
+    height: 350px;
+    position: relative;
+    overflow: hidden;
+}
+
+.chart-content {
+    left: 100px;
     height: 300px;
     position: relative;
 }
 
-.chart-bar {
-    border: 1px solid white;
+.bar-chart .label {
+    position: absolute;
+    bottom: -50px;
+    font-size: 0.8em;
+    color: white;
+}
+
+.bar-chart .value {
+    font-size: 0.8em;
+    text-align: center;
+    color: white;
+}
+
+.bar-chart .bar {
     background-color: grey;
     position: absolute;
     bottom: 0;
     left: 15px;
-    width: 30px;
+    width: 50px;
 }
 
 // ****************************************************************
