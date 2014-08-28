@@ -17,6 +17,9 @@ a {
 a:hover {
   color: #60da5a;
 }
+.chart-area {
+  background-image: url("chart_pattern_green.png");
+}
 .slide {
   transition: 0.5s all;
   transform: translateX(20%);

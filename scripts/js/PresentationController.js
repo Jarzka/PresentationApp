@@ -6,21 +6,21 @@ function PresentationController() {
 
     var currentSlide = 0; // 0-index
 
-    var updateView = function() {
+    function updateView () {
         hideAllSlides();
         showCurrentSlide();
         window.scrollTo(0, 0);
-    };
+    }
 
-    var hideAllSlides = function() {
+    function hideAllSlides() {
         $(".slide").each(function()  {
             $(this).removeClass("slide-active");
         })
-    };
+    }
 
-    var showCurrentSlide = function() {
+    function showCurrentSlide() {
         $(".slide").eq(currentSlide).addClass("slide-active");
-    };
+    }
 
     // Public
 

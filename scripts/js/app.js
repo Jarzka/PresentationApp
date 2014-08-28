@@ -16,6 +16,9 @@ $(document).ready(function() {
         presentationApp.inputController = new InputController();
         presentationApp.inputController.initializeController();
 
+        presentationApp.charController = new ChartController();
+        presentationApp.charController.initializeController();
+
         $.getScript("presentations/" + presentationName + "/scripts/js/SlideController.js", function() {
             presentationApp.slideController = new SlideController();
             presentationApp.slideController.initializeController();
@@ -23,6 +26,7 @@ $(document).ready(function() {
 
         // Set presentation slide styles
         $("#presentation-slide-style").attr("href", "presentations/" + presentationName + "/style/slides.css");
+
 
         // Fix relative image and video urls
         $("[src]").each(function() {

@@ -1,6 +1,6 @@
 /* This theme uses the same values as in style_global.css.
  * The values in style_global.css are subject to change so if you use this theme, your
  * presentation may look different if you update PresentationApp */
-.chart-area {
+.chart-content {
   background-image: url("chart_pattern_default.png");
 }
