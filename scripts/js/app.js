@@ -4,7 +4,7 @@ var presentationApp = {};
 $(document).ready(function() {
     // Load presentation theme
     $.getScript("presentations/" + presentationName + "/presentation.js", function() {
-        $("#presentation-theme").attr("href", "themes/" + theme);
+        $("#presentation-theme").attr("href", "themes/" + theme + "/style.css");
     });
 
     // Load presentation slides
