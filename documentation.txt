@@ -55,7 +55,7 @@ presentation.js
     Currently the only thing in this file is the theme name.
     If you want use some other theme instead of the default theme,
     edit the file like this:
-    var theme = "theme_love.css";
+    var theme = "theme_love";
 
 Once your presentation is ready, open index.html and find the following line:
 var presentationName = "example_presentation";
@@ -70,8 +70,8 @@ Custom theme
 
 You need basic CSS skills if you want to create a custom theme for your presentation.
 
-All themes are located in the themes folder. This folder contains CSS themes files that can
+All themes are located in the themes folder in sub-folders. The folders contain CSS theme files that can
 be used in presentations. If you want to make a custom theme for your presentation,
-make a copy of theme_basic.css and modify it. After you are done, go to your presentation's
-folder, open presentation.js and change the presentation theme name to match your custom theme file.
+make a copy of theme_basic folder and modify it's contents. After you are done, go to your presentation's
+folder, open presentation.js and change the presentation theme name to match your custom theme.
 

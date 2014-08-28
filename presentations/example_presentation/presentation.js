@@ -1,1 +1,1 @@
-var theme = "theme_default.css";
+var theme = "theme_default";
