@@ -2,6 +2,9 @@
 /* First this controller converts the non-standard bar chart HTML code to standard HTML.
  * The style_global.css defines base values for all charts. However, not all values are possible
  * to present in CSS so this controller fixes that.
+ *
+ * The desktop bar chart size is currently fixed and therefore some magic numbers exists in the code.
+ * If the window size can not cover the whole bar chart, it is converted to an HTML table.
  */
 
 function BarChartController() {
