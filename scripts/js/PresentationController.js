@@ -22,6 +22,21 @@ function PresentationController() {
         $(".slide").eq(currentSlide).addClass("slide-active");
     }
 
+    function fixIFrames() {
+        // Reduce iframe width to window width
+        $("iframe").each(function() {
+            if ($(window).width() < $(this).width()) {
+                $(this).attr("width", $(window).width() - $(".slide").css("padding-right"));
+            }
+        })
+    }
+
+    function addWindowSizeListener() {
+        $(window).resize(function() {
+            fixIFrames();
+        });
+    }
+
     // Public
 
     this.nextSlide = function() {
@@ -47,5 +62,8 @@ function PresentationController() {
     this.initializeController = function() {
         // Activate the first slide
         $(".slide").eq(0).addClass("slide-active");
+
+        fixIFrames();
+        addWindowSizeListener();
     }
 }
