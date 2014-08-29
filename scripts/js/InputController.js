@@ -46,8 +46,10 @@ function InputController() {
         $("html").keydown(function(e) {
             if(e.keyCode == 83) { // s
                 if (isSwipeEnabled) {
+                    toastr.info("Swiping disabled.");
                     isSwipeEnabled = false;
                 } else {
+                    toastr.info("Swiping enabled.");
                     isSwipeEnabled = true;
                 }
             }
