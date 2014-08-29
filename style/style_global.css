@@ -164,6 +164,14 @@ table tr {
   border-bottom: 1px solid white;
   width: 80px;
 }
+.bar-chart-mobile {
+  margin-bottom: 0.5em;
+  border: 1px solid white;
+}
+.bar-chart-mobile td {
+  padding-left: 15px;
+  padding-right: 15px;
+}
 .slide {
   transition: 0.5s all;
   transform: rotateY(45deg) translateX(5%);

@@ -1,0 +1,8 @@
+@media screen and (min-width: 400px) {
+  body {
+    font-size: 1.4em;
+  }
+  .slide {
+    padding: 30px;
+  }
+}

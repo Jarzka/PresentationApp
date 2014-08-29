@@ -12,29 +12,31 @@ function BarChartController() {
 
     function convertBarChartsToStandardHTML() {
         // Convert bar chart to standard HTML / CSS
-        $("pa-barchart").each(function() {
-            $(this).replaceWith("<div class='chart bar-chart'>" + this.innerHTML + "</div>");
-        });
+        if ($("pa-barchart").length > 0) {
+            $("pa-barchart").each(function() {
+                $(this).replaceWith("<div class='chart bar-chart'>" + this.innerHTML + "</div>");
+            });
 
-        // Convert bars to standard HTML / CSS
+            // Convert bars to standard HTML / CSS
 
-        $("pa-bar").each(function() {
-            var barStandard = $("<div class='bar'></div>");
-            barStandard.attr("value", $(this).attr("value"));
-            barStandard.attr("name", $(this).attr("name"));
-            barStandard.attr("color", $(this).attr("color"));
-            $(this).replaceWith(barStandard);
-        });
+            $("pa-bar").each(function() {
+                var barStandard = $("<div class='bar'></div>");
+                barStandard.attr("value", $(this).attr("value"));
+                barStandard.attr("name", $(this).attr("name"));
+                barStandard.attr("color", $(this).attr("color"));
+                $(this).replaceWith(barStandard);
+            });
 
-        // Create chart content area and move bars there
+            // Create chart content area and move bars there
 
-        var chartContent = $("<div class='chart-content'></div>");
-        $(".bar-chart").append(chartContent);
+            var chartContent = $("<div class='chart-content'></div>");
+            $(".bar-chart").append(chartContent);
 
-        $(".bar-chart .bar").each(function() {
-            var parentChartContent = $(this).parents(".bar-chart").children(".chart-content");
-            $(this).detach().appendTo(parentChartContent);
-        });
+            $(".bar-chart .bar").each(function() {
+                var parentChartContent = $(this).parents(".bar-chart").children(".chart-content");
+                $(this).detach().appendTo(parentChartContent);
+            });
+        }
     }
 
     /** @param bars jQuery DOM object presenting bars */
@@ -165,21 +167,66 @@ function BarChartController() {
         });
     }
 
-    function constructBarCharts() {
-        convertBarChartsToStandardHTML();
-        bars = $(".bar-chart .bar");
+    function constructMobileBarChartTable() {
+        $("pa-barchart").each(function() {
+            var table = $("<table class='bar-chart-mobile'><tbody></tbody></table>");
+            $(this).find("pa-bar").each(function() {
+                table.find("tbody").append(
+                    "<tr><td>"
+                    + $(this).attr("name")
+                    + "</td><td>"
+                    + $(this).attr("value")
+                    + "</td></tr>")
+            });
 
-        if (bars.length > 0) {
-            positionChartsOnXAxis();
-            setBarHeights();
-            setBarChartSize();
-            colorBarChartBars();
-            addLabels();
-            fixBarChartHeight();
-            addBarNumbers();
-            fixLowBarNumbers();
-            addAxes();
-        }
+            $(this).after(table);
+        });
+
+    }
+
+    function constructMobileBarCharts() {
+        constructMobileBarChartTable();
+    }
+
+    function constructDesktopBarCharts() {
+        convertBarChartsToStandardHTML();
+        positionChartsOnXAxis();
+        setBarHeights();
+        setBarChartSize();
+        colorBarChartBars();
+        addLabels();
+        fixBarChartHeight();
+        addBarNumbers();
+        fixLowBarNumbers();
+        addAxes();
+    }
+
+    function adjustBarChartForCurrentWindow() {
+        $(".bar-chart").each(function() {
+            console.log($(this).width());
+            console.log($(window).width());
+            if ($(window).width() < $(this).width()) {
+                $(this).css("display", "none");
+                $(this).next(".bar-chart-mobile").css("display", "block");
+            } else {
+                $(this).css("display", "block");
+                $(this).next(".bar-chart-mobile").css("display", "none");
+            }
+        })
+    }
+
+    /** If the current screen size can not cover the whole bar chart, show the table version. */
+    function addWindowSizeListener() {
+        $(window).resize(function() {
+            adjustBarChartForCurrentWindow();
+        });
+    }
+
+    function constructBarCharts() {
+        constructMobileBarCharts();
+        constructDesktopBarCharts();
+        adjustBarChartForCurrentWindow();
+        addWindowSizeListener();
     }
 
     // Public
