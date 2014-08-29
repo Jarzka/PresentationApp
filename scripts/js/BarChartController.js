@@ -41,16 +41,11 @@ function BarChartController() {
 
     /** @param bars jQuery DOM object presenting bars */
     function findHighestBar(bars) {
-        var highestBar = {};
+        var highestBar = bars.eq(0);
 
         bars.each(function(index) {
-            if (index == 0) {
+            if (parseInt($(this).attr("value")) > parseInt(highestBar.attr("value"))) {
                 highestBar = $(this);
-            } else {
-                if ($(this).attr("value") > highestBar.attr("value")) {
-                    highestBarIndex = index;
-                    highestBar = $(this);
-                }
             }
         });
 
@@ -70,17 +65,15 @@ function BarChartController() {
         $(".chart-content").each(function() {
             // Set highest bar value.
             var highestBar = findHighestBar($(this).children(".bar"));
-            highestBar.css("height", highestBarHeightPx);
 
-            // Set all other bar heights relative to the highest bar value.
+            // Set all bar heights relative to the highest bar value.
             $(this).children(".bar").each(function(index) {
-                if (index != highestBarIndex) {
-                    if ($(this).attr("value") >= 0) {
-                        $(this).css("height", ($(this).attr("value") / highestBar.attr("value")) * highestBarHeightPx);
-                    } else {
-                        // Currently there is no good support for negative values. Hide the bar.
-                        $(this).css("height", 0);
-                    }
+                if (parseInt($(this).attr("value")) >= 0) {
+                    $(this).css("height",
+                        (parseInt($(this).attr("value")) / parseInt(highestBar.attr("value"))) * highestBarHeightPx);
+                } else {
+                    // Currently there is no good support for negative values. Hide the bar.
+                    $(this).css("height", 0);
                 }
             });
         });
@@ -90,7 +83,7 @@ function BarChartController() {
     function setBarChartSize() {
         $(".bar-chart").each(function() {
             var barsInThisChart = $(this).find(".bar");
-            $(this).css("width", barsInThisChart.length * 100 + 100); // TODO HARDCODED VALUES
+            $(this).css("width", barsInThisChart.length * 100 + 100);
         });
     }
 
@@ -104,7 +97,7 @@ function BarChartController() {
         $(".bar-chart").each(function() {
             $(this).find(".bar").each(function(index) {
                 var label = $("<p class='label'>" + $(this).attr("name") + "</p>");
-                label.css("left", index * 100 + 110); // TODO HARDOCDED VALUES
+                label.css("left", index * 100 + 110);
                 $(this).parents(".bar-chart").append(label);
             });
         })
@@ -113,7 +106,7 @@ function BarChartController() {
 
     function addBarNumbers() {
         $(".bar").each(function(index) {
-            var label = $("<p class='value'>" + $(this).attr("value") + "</p>");
+            var label = $("<p class='value'>" + parseInt($(this).attr("value")) + "</p>");
             $(this).append(label);
         });
     }
@@ -151,8 +144,8 @@ function BarChartController() {
     function addAxes() {
         $(".bar-chart").each(function() {
             var highestBar = findHighestBar($(this).find(".bar"));
-            var axisHighestValue = $("<p class='axis'>" + highestBar.attr("value") + "</p>");
-            var axisMiddleValue = $("<p class='axis'>" + (highestBar.attr("value") / 2) + "</p>");
+            var axisHighestValue = $("<p class='axis'>" + parseInt(highestBar.attr("value")) + "</p>");
+            var axisMiddleValue = $("<p class='axis'>" + parseInt((highestBar.attr("value")) / 2) + "</p>");
             var axisLowestValue = $("<p class='axis'>" + 0 + "</p>");
             $(this).append(axisHighestValue);
             $(this).append(axisMiddleValue);
@@ -203,8 +196,6 @@ function BarChartController() {
 
     function adjustBarChartForCurrentWindow() {
         $(".bar-chart").each(function() {
-            console.log($(this).width());
-            console.log($(window).width());
             if ($(window).width() < $(this).width()) {
                 $(this).css("display", "none");
                 $(this).next(".bar-chart-mobile").css("display", "block");
