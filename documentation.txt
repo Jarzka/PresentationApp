@@ -2,7 +2,7 @@
 PresentationApp
 ===============================================================
 
-Version: 1.0
+Version: 1.1
 
 This is a short documentation of PresentationApp.
 
