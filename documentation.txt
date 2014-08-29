@@ -84,3 +84,4 @@ Version history
 - Added support for built-in bar charts.
 - Slides can now be arbitrary long in height.
 - Swiping works on all devices (can be disabled by pressing S).
+- Other little changes.
