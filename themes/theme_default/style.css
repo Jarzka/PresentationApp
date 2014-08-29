@@ -4,3 +4,6 @@
 .chart-content {
   background-image: url("chart_pattern_default.png");
 }
+.chart {
+  background-color: black;
+}

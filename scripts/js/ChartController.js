@@ -37,8 +37,24 @@ function ChartController() {
             });
         }
 
+        function findHighestBarValue() {
+            var highestBar = {};
+            bars.each(function(index) {
+                if (index == 0) {
+                    highestBar = $(this);
+                } else {
+                    if ($(this).attr("value") > highestBar.attr("value")) {
+                        highestBarIndex = index;
+                        highestBar = $(this);
+                    }
+                }
+            });
+
+            return highestBar;
+        }
+
         function setBarHeights() {
-            var highestBarHeight = 270;
+            var highestBarHeightPx = 270;
 
             // Find the chart bar with the highest value and set it's height to 100%.
 
@@ -54,12 +70,12 @@ function ChartController() {
                     }
                 }
             });
-            highestBar.css("height", highestBarHeight);
+            highestBar.css("height", highestBarHeightPx);
 
             // All other chart height values are set relative to the highest bar value.
             bars.each(function(index) {
                 if (index != highestBarIndex) {
-                    $(this).css("height", ($(this).attr("value") / highestBar.attr("value")) * highestBarHeight);
+                    $(this).css("height", ($(this).attr("value") / highestBar.attr("value")) * highestBarHeightPx);
                 }
             });
         }
@@ -95,12 +111,30 @@ function ChartController() {
         });
     }
 
+    function addAxes() {
+        var barCharts = $(".bar-chart");
+        var axisHighestValue = $("<p class='axis'>" + "333" + "</p>");
+        var axisMiddleValue = $("<p class='axis'>" + "222" + "</p>");
+        var axisLowestValue = $("<p class='axis'>" + "-43" + "</p>");
+        barCharts.append(axisHighestValue);
+        barCharts.append(axisMiddleValue);
+        barCharts.append(axisLowestValue);
+
+        axisHighestValue.css("left", 10);
+        axisHighestValue.css("top", 4);
+        axisMiddleValue.css("left", 10);
+        axisMiddleValue.css("top", 130); // TODO HARDCODED VALUE
+        axisLowestValue.css("left", 10);
+        axisLowestValue.css("top", 265); // TODO HARDCODED VALE
+    }
+
     function constructBarCharts() {
         convertBarChartsToStandardHTML();
         positionBarChart();
         colorBarChartBars();
         addLabels();
         addBarNumbers();
+        addAxes();
     }
 
     // Public
