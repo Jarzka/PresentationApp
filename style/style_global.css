@@ -129,6 +129,8 @@ table tr {
   height: 350px;
   position: relative;
   overflow: hidden;
+  margin-bottom: 0.5em;
+  background-color: black;
 }
 .chart-content {
   left: 100px;
@@ -142,6 +144,7 @@ table tr {
   color: white;
 }
 .bar-chart .value {
+  position: relative;
   font-size: 0.8em;
   text-align: center;
   color: white;
@@ -173,6 +176,7 @@ code {
   border: 1px solid white;
   background-color: #040616;
   padding: 5px;
+  color: white;
 }
 .controls-area {
   position: fixed;
