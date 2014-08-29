@@ -17,7 +17,23 @@ a:hover {
 }
 .chart-content {
   background-image: url("chart_pattern_love.png");
+  border: 1px solid black;
+}
+.chart {
+  color: white;
+  border: 1px solid black;
+  background-color: #1b0412;
+}
+.bar-chart-mobile {
+  border: 1px solid black;
+  background-image: url("chart_pattern_love.png");
+  color: white;
 }
 .slide {
   transition: 0.5s opacity;
+}
+code {
+  border: 1px solid black;
+  background-image: url("chart_pattern_love.png");
+  color: white;
 }

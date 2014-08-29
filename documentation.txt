@@ -75,3 +75,12 @@ be used in presentations. If you want to make a custom theme for your presentati
 make a copy of theme_basic folder and modify it's contents. After you are done, go to your presentation's
 folder, open presentation.js and change the presentation theme name to match your custom theme.
 
+===============================================================
+Version history
+===============================================================
+
+1.1
+------------------------------------------
+- Added support for built-in bar charts.
+- Slides can now be arbitrary long in height.
+- Swiping works on all devices (can be disabled by pressing S).
