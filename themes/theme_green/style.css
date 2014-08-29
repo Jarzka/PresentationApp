@@ -33,7 +33,7 @@ a:hover {
 }
 .slide {
   transition: 0.5s all;
-  transform: translateX(10%);
+  transform: rotateY(20deg);
 }
 .slide-active {
   transform: none;
