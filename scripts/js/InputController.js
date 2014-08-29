@@ -5,6 +5,8 @@ function InputController() {
 
     // Private
 
+    var isSwipeEnabled = true;
+
     // Public
 
     this.initializeController = function() {
@@ -29,17 +31,27 @@ function InputController() {
             $.publish("/forward", []);
         });
 
-        if ($(window).width() < 520) { // Swipe support on mobile
-            $("html").swipeleft(function() {
+        $("html").swipeleft(function() {
+            if (isSwipeEnabled) {
                 $.publish("/forward", []);
-            });
+            }
+        });
 
-            $("html").swiperight(function() {
+        $("html").swiperight(function() {
+            if (isSwipeEnabled) {
                 $.publish("/backward", []);
-            });
-        }
+            }
+        });
 
         $("html").keydown(function(e) {
+            if(e.keyCode == 83) { // s
+                if (isSwipeEnabled) {
+                    isSwipeEnabled = false;
+                } else {
+                    isSwipeEnabled = true;
+                }
+            }
+
             if(e.keyCode == 37) { // left
                 $.publish("/backward", []);
             }
