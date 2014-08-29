@@ -212,7 +212,7 @@ table
 
 .chart {
     border: 1px solid white;
-    height: 350px;
+    height: 305px; /// Does not cover labels. ChartController should increase height to cover labels of all size.
     position: relative;
     overflow: hidden;
     margin-bottom: 0.5em;
@@ -227,9 +227,10 @@ table
 
 .bar-chart .label {
     position: absolute;
-    bottom: -50px;
+    text-align: center;
     font-size: 0.8em;
     color: white;
+    width: 80px;
 }
 
 .bar-chart .value {

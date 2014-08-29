@@ -92,7 +92,8 @@ function BarChartController() {
     function addLabels() {
         bars.each(function(index) {
             var label = $("<p class='label'>" + $(this).attr("name") + "</p>");
-            $(this).append(label);
+            label.css("left", index * 100 + 110); // TODO HARDOCDED VALUES
+            $(this).parents(".bar-chart").append(label);
         });
     }
 
@@ -112,6 +113,24 @@ function BarChartController() {
                 });
             }
         });
+    }
+
+    /** Set the bar chart height so that all labels are shown. */
+    function fixBarChartHeight() {
+        // Find the label with the highest height.
+        var highestLabel = {};
+        $(".bar-chart .label").each(function(index) {
+            if (index == 0) {
+                highestLabel = $(this);
+            } else {
+                if ($(this).height() > highestLabel.height()) {
+                    highestLabel = $(this);
+                }
+            }
+        });
+
+        var parentBarChart = highestLabel.parents(".bar-chart");
+        parentBarChart.css("height", parentBarChart.height() + highestLabel.height());
     }
 
     function addAxes() {
@@ -145,6 +164,7 @@ function BarChartController() {
             addBarNumbers();
             fixLowBarNumbers();
             addAxes();
+            fixBarChartHeight();
         }
     }
 

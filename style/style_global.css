@@ -126,7 +126,7 @@ table tr {
 }
 .chart {
   border: 1px solid white;
-  height: 350px;
+  height: 305px;
   position: relative;
   overflow: hidden;
   margin-bottom: 0.5em;
@@ -139,9 +139,10 @@ table tr {
 }
 .bar-chart .label {
   position: absolute;
-  bottom: -50px;
+  text-align: center;
   font-size: 0.8em;
   color: white;
+  width: 80px;
 }
 .bar-chart .value {
   position: relative;
